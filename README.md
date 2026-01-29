@@ -48,4 +48,4 @@
 Per una spiegazione dettagliata dell'architettura e della connessione tra i componenti, consulta la [Documentazione Tecnica](documentazione_tecnica.md).
 
 ---
-*Sviluppato con ❤️ da Mario - 2025*
+*Sviluppato con ❤️ da Mario - 2026*
