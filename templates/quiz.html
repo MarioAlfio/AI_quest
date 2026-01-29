@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Valle dell'AI - AI Quest{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="quiz-layout">
+    <div class="map-section">
+        <div class="map-header">
+            <h2>Esplora la Valle dell'AI</h2>
+            <p>Clicca sulla zona corrispondente al tuo avatar per continuare.</p>
+        </div>
+
+        <div class="map-container" id="map-container">
+            <!-- La mappa verrà generata dinamicamente via JS -->
+            <!-- Background Path (SVG) -->
+            <svg class="map-svg-bg" viewBox="0 0 400 600">
+                <path d="M 200 550 Q 150 450 200 350 T 200 50" fill="none" stroke="#e2e8f0" stroke-width="4"
+                    stroke-dasharray="8 4" />
+            </svg>
+
+            <!-- Zone positions defined in map.css -->
+            <div class="zone zone-5 locked" data-zone="5">
+                <div class="zone-bubble">
+                    <span class="zone-icon">🏰</span>
+                    <span class="zone-name">Castello</span>
+                    <span class="lock-icon">🔒</span>
+                </div>
+            </div>
+
+            <div class="zone zone-4 locked" data-zone="4">
+                <div class="zone-bubble">
+                    <span class="zone-icon">🌉</span>
+                    <span class="zone-name">Ponte</span>
+                    <span class="lock-icon">🔒</span>
+                </div>
+            </div>
+
+            <div class="zone zone-3 locked" data-zone="3">
+                <div class="zone-bubble">
+                    <span class="zone-icon">🏛️</span>
+                    <span class="zone-name">Tempio</span>
+                    <span class="lock-icon">🔒</span>
+                </div>
+            </div>
+
+            <div class="zone zone-2 locked" data-zone="2">
+                <div class="zone-bubble">
+                    <span class="zone-icon">🏔️</span>
+                    <span class="zone-name">Monti</span>
+                    <span class="lock-icon">🔒</span>
+                </div>
+            </div>
+
+            <div class="zone zone-1 current" data-zone="1">
+                <div class="zone-bubble">
+                    <span class="zone-icon">🌲</span>
+                    <span class="zone-name">Foresta</span>
+                    <div class="avatar-marker">🧙</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <div class="stats-card">
+            <h3>📊 Statistiche</h3>
+            <div class="stat-item">
+                <span>Punti:</span>
+                <strong id="user-score">{{ current_user.total_score }}</strong>
+            </div>
+            <div class="stat-item">
+                <span>Streak:</span>
+                <strong id="user-streak">🔥 {{ current_user.current_streak }}</strong>
+            </div>
+            <div class="stat-item">
+                <span>Progresso:</span>
+                <strong id="zone-progress">0/5</strong>
+            </div>
+        </div>
+
+        <div class="inventory-card">
+            <h3>🎒 Inventario</h3>
+            <div class="inventory-grid" id="inventory-grid">
+                <div class="slot" id="slot-boots" title="Stivali del Principiante">⬜</div>
+                <div class="slot" id="slot-backpack" title="Zaino dei Dati">⬜</div>
+                <div class="slot" id="slot-sword" title="Spada dei Filtri">⬜</div>
+                <div class="slot" id="slot-shield" title="Scudo Dimensionale">⬜</div>
+                <div class="slot" id="slot-crown" title="Corona del Maestro CNN">⬜</div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Modal Quiz (Hidden by default) -->
+<div id="quiz-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-zone-title">Zona</h2>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="quiz-question-container">
+                <p id="question-text">Caricamento domanda...</p>
+                <div class="options-grid" id="options-grid">
+                    <!-- Opzioni generate via JS -->
+                </div>
+            </div>
+            <div id="feedback-container" class="hidden">
+                <div id="feedback-result"></div>
+                <p id="feedback-explanation"></p>
+                <button id="next-question-btn" class="btn btn-primary">Prossima Domanda →</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Libreria Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+{% endblock %}

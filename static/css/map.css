@@ -1,0 +1,236 @@
+/* MAPPA DELLA VALLE DELL'AI */
+.quiz-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.map-section {
+    background: #e0f2fe;
+    /* Light sky blue */
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+    min-height: 700px;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.map-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.map-container {
+    position: relative;
+    height: 600px;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.map-svg-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Posizionamento Zone */
+.zone {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 10;
+    cursor: default;
+    transition: var(--transition);
+}
+
+.zone-1 {
+    bottom: 20px;
+    left: 150px;
+}
+
+.zone-2 {
+    bottom: 150px;
+    left: 50px;
+}
+
+.zone-3 {
+    bottom: 280px;
+    left: 230px;
+}
+
+.zone-4 {
+    bottom: 420px;
+    left: 80px;
+}
+
+.zone-5 {
+    top: 20px;
+    left: 150px;
+}
+
+.zone-bubble {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    box-shadow: var(--shadow);
+    border: 3px solid white;
+    position: relative;
+    overflow: hidden;
+}
+
+.zone-icon {
+    font-size: 1.8rem;
+    margin-top: 5px;
+}
+
+.zone-name {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+    width: 100%;
+    padding: 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Stati Zone */
+.zone.locked .zone-bubble {
+    background-color: #f1f5f9;
+    filter: grayscale(1);
+    opacity: 0.7;
+}
+
+.zone.unlocked {
+    cursor: pointer;
+}
+
+.zone.unlocked:hover .zone-bubble {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--primary);
+}
+
+.zone.completed .zone-bubble {
+    border-color: var(--secondary);
+}
+
+.zone.current .zone-bubble {
+    border-color: var(--primary);
+    border-width: 4px;
+}
+
+.lock-icon {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: var(--shadow);
+}
+
+/* Avatar */
+.avatar-marker {
+    position: absolute;
+    top: 5px;
+    font-size: 2.2rem;
+    animation: bounce 2s infinite;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.stats-card,
+.inventory-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.slot {
+    aspect-ratio: 1;
+    background: var(--bg-main);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.slot.filled {
+    background: var(--primary-light);
+    border: 1px solid var(--primary);
+}
+
+@media (max-width: 900px) {
+    .quiz-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        order: -1;
+        flex-direction: row;
+    }
+
+    .stats-card,
+    .inventory-card {
+        flex: 1;
+    }
+}

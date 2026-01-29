@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Home - AI Quest{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Benvenuto in AI Quest! 🚀</h1>
+    <p class="hero-subtitle">Esplora la Valle dell'AI e costruisci la tua prima rete neurale per riconoscere i numeri
+        (MNIST).</p>
+
+    {% if not current_user.is_authenticated %}
+    <div class="hero-actions">
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-large">Inizia l'Avventura</a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-secondary btn-large">Ho già un account</a>
+    </div>
+    {% else %}
+    <div class="hero-actions">
+        <a href="{{ url_for('quiz.quiz') }}" class="btn btn-primary btn-large">Continua il Viaggio</a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Widget Meteo (Placeholder per i dati caricati via JS) -->
+<section class="weather-widget">
+    <h3>🌤️ Widget Meteo della Valle</h3>
+    <div id="weather-form-container">
+        <input type="text" id="city-input" placeholder="Inserisci nome città (es: Roma)">
+        <button id="search-weather-btn" class="btn btn-accent">Cerca</button>
+    </div>
+    <div id="weather-display" class="weather-results">
+        <p>Inserisci una città per vedere il meteo dei prossimi 3 giorni nella Valle dell'AI!</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // La logica del meteo è gestita in static/js/main.js per evitare conflitti
+</script>
+{% endblock %}

@@ -1,0 +1,64 @@
+# Walkthrough - AI Quest
+
+Il progetto **AI Quest** è stato completato con successo. Abbiamo trasformato lo scaffold teorico in un'applicazione Flask completamente funzionale, con un'estetica premium e una logica di gioco solida.
+
+## Funzionalità Implementate
+
+### 1. La Valle dell'AI (Mappa Interattiva)
+L'utente viaggia attraverso 5 location iconiche per costruire la sua CNN.
+- **Progressione Dinamica**: Le zone si sbloccano sequenzialmente.
+- **Avatar Animato**: Un mago 🧙 si sposta sulla mappa seguendo l'utente.
+- **Inventario**: Gli oggetti sbloccati (🥾, 🎒, ⚔️, 🛡️, 👑) appaiono nella sidebar.
+
+### 2. Motore del Quiz
+- **10 Domande MNIST**: Contenuti tecnici accurati con spiegazioni coinvolgenti.
+- **Randomizzazione**: Le domande vengono rimescolate ad ogni apertura di zona, come richiesto dalle linee guida.
+- **Quiz Infinito**: Completata una zona, è possibile rigiocarla all'infinito per migliorare il proprio punteggio.
+- **Sistema di Streak**: Feedback visivo 🔥 per risposte corrette consecutive.
+- **Celebrazioni**: Effetto coriandoli 🎉 (usando canvas-confetti) al completamento delle domande corrette.
+- **Feedback Istantaneo**: Modal con spiegazioni tecniche e caricamento asincrono.
+
+### 3. Autenticazione e Profilo
+- Sistema di registrazione e login completo.
+- Persistenza del progresso nel database SQLite.
+- Navbar dinamica che si adatta allo stato di login.
+
+### 4. Widget Meteo della Valle
+- **Meteo Simulato**: Un sistema di previsioni integrato nella narrativa che non richiede chiavi API esterne.
+- **Previsioni Tematiche**: Mostra condizioni divertenti come "Pioggia di dati" o "Nebbia di Dropout" in base alla città inserita.
+- **Icone Dinamiche**: Utilizza icone meteo standard per una visualizzazione chiara dei 3 giorni.
+
+## Struttura del Codice
+Seguendo la tua richiesta, il codice è stato organizzato in modo **chiaro e lineare**:
+- **[app.py](file:///home/mario/test_job/app.py)**: Application factory pulita.
+- **`routes/`**: Blueprints modulari (`auth`, `main`, [quiz](file:///home/mario/test_job/routes/quiz.py#9-17), `api`).
+- **[models.py](file:///home/mario/test_job/models.py)**: Schema DB ben definito con metodi helper.
+- **`static/js/`**: Logica frontend separata (motore mappa vs motore quiz).
+
+## Come Avviare il Progetto
+
+Per evitare conflitti tra diverse versioni di Python sul tuo sistema, ho creato un ambiente virtuale (`venv`). Segui questi passaggi:
+
+1. Attiva l'ambiente virtuale:
+   ```bash
+   source venv/bin/activate
+   ```
+2. (Opzionale) Assicurati che le dipendenze siano aggiornate nell'ambiente:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Avvia l'applicazione:
+   ```bash
+   python app.py
+   ```
+4. Apri il browser all'indirizzo `http://127.0.0.1:5000`.
+
+> [!NOTE]
+> Se non vuoi attivare l'ambiente ogni volta, puoi lanciare l'app direttamente con:
+> `./venv/bin/python app.py`
+
+## Risultato Finale (Anteprima UI)
+L'interfaccia utilizza un tema **Cyberpunk Light** con font moderni (*Inter* e *Space Grotesk*) e una palette colori Indigo/Emerald che la rende accattivante per un pubblico giovane.
+
+> [!TIP]
+> Per testare lo sblocco degli item, completa le domande della **Foresta delle Basi** (Zona 1). Riceverai gli **Stivali del Principiante**!

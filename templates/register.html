@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Registrati - AI Quest{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+    <div class="auth-header">
+        <h1>Inizia la tua Avventura</h1>
+        <p>Crea un account per esplorare la Valle dell'AI</p>
+    </div>
+
+    <form action="{{ url_for('auth.register') }}" method="POST" class="auth-form">
+        <div class="form-group">
+            <label for="login">Username</label>
+            <input type="text" id="login" name="login" placeholder="Scegli un username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nickname">Nickname (visibile in classifica)</label>
+            <input type="text" id="nickname" name="nickname" placeholder="Come vuoi essere chiamato?" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Inserisci una password sicura" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Conferma Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Ripeti la password"
+                required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrati</button>
+    </form>
+
+    <div class="auth-footer">
+        <p>Hai già un account? <a href="{{ url_for('auth.login') }}">Fai login qui</a></p>
+    </div>
+</div>
+{% endblock %}

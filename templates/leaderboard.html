@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Classifica - AI Quest{% endblock %}
+
+{% block content %}
+<div class="leaderboard-container">
+    <div class="leaderboard-header">
+        <h1>🏆 I Maestri delle CNN</h1>
+        <p>Gli esploratori che hanno accumulato più punti nella Valle dell'AI</p>
+    </div>
+
+    <div class="leaderboard-card">
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Posizione</th>
+                    <th>Esploratore</th>
+                    <th>Punteggio</th>
+                    <th>Zone</th>
+                    <th>Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in leaderboard %}
+                <tr class="{% if current_user.nickname == user.nickname %}user-highlight{% endif %}">
+                    <td>{{ user.rank }}</td>
+                    <td>{{ user.nickname }} {% if current_user.nickname == user.nickname %}(Tu){% endif %}</td>
+                    <td>{{ user.score }}</td>
+                    <td>{{ user.zones }}</td>
+                    <td>{{ user.unlocked_items }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="no-data-msg">
+            <p>La competizione è appena iniziata! Inizia il quiz per scalare la classifica.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Stili specifici per la classifica */
+    .leaderboard-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .leaderboard-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .leaderboard-card {
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .leaderboard-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .leaderboard-table th {
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        text-align: left;
+        padding: 1rem;
+        font-weight: 600;
+    }
+
+    .leaderboard-table td {
+        padding: 1rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .user-highlight {
+        background-color: #fff9db !important;
+        font-weight: 600;
+    }
+
+    .no-data-msg {
+        padding: 2rem;
+        text-align: center;
+        color: var(--text-muted);
+    }
+</style>
+{% endblock %}
