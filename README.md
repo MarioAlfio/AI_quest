@@ -42,6 +42,8 @@
    python app.py
    ```
    L'app sarà disponibile all'indirizzo `http://127.0.0.1:5000`.
+   Online su: "https://carlomartello.pythonanywhere.com/"
+   
 
 ## 📂 Struttura del Progetto
 
